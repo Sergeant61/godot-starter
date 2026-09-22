@@ -1,3 +1,9 @@
 .godot/
 build/
 .DS_Store
+
+# The Android build template and everything Gradle leaves behind it: a gigabyte of generated
+# files the editor writes again from nothing (Project > Install Android Build Template). What is
+# not generated is android/plugins, where a plugin's own files are put by hand, so that one is kept.
+/android/*
+!/android/plugins/

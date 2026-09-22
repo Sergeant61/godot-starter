@@ -41,7 +41,12 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Play"
 
-[node name="MuteButton" type="Button" parent="Center/VBox"]
+[node name="MusicButton" type="Button" parent="Center/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Sound: On"
+text = "Music: On"
+
+[node name="SfxButton" type="Button" parent="Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sounds: On"

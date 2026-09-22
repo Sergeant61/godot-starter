@@ -1,7 +1,7 @@
 extends Control
 ## Placeholder game: tap as often as you can in 10 seconds.
-## Replace this scene with the real game; keep the Portal.gameplay_start/stop calls
-## and hand the result to GameOver.
+## Replace this scene with the real game; keep the Portal.gameplay_start/stop and Ads.start_run
+## calls and hand the result to GameOver.
 
 const ROUND_SECONDS := 10.0
 
@@ -34,6 +34,7 @@ func _start() -> void:
 	_running = true
 	%TapButton.disabled = false
 	_game_over.hide()
+	Ads.start_run()
 	Portal.gameplay_start()
 
 

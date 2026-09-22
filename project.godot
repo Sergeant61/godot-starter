@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="Godot Starter"
+config/version="0.1.0"
 run/main_scene="res://scenes/boot.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://art/icon/icon_small.png"
 
 [autoload]
 
@@ -20,6 +22,8 @@ Portal="*res://core/portal.gd"
 Save="*res://core/save.gd"
 Settings="*res://core/settings.gd"
 Progress="*res://core/progress.gd"
+Admob="*res://core/admob.gd"
+Ads="*res://core/ads.gd"
 
 [display]
 
@@ -28,9 +32,17 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/admob/plugin.cfg")
+
 [gui]
 
 theme/custom="res://core/theme.tres"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
