@@ -16,7 +16,10 @@ func _ready() -> void:
 		if AudioServer.get_bus_index(bus) < 0:
 			AudioServer.add_bus()
 			AudioServer.set_bus_name(AudioServer.bus_count - 1, bus)
-			AudioServer.set_bus_send(AudioServer.bus_count - 1, &"Master")
+			## A new bus already sends to Master. Never call set_bus_send() here: in the web
+			## export it reaches the browser mixer with the two buses the wrong way round, so
+			## Master starts sending into the new bus, loses the speaker, and the whole game
+			## plays in silence with every meter still moving.
 
 
 func is_music_on() -> bool:

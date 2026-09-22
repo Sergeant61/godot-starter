@@ -108,6 +108,13 @@ Sonra sırayla:
 - Bazı telefonlar (Hivebreaker'daki G702) test birimlerini bile hiç yüklemez; reklam testi Play
   Store imajlı emülatörde yapılır.
 - CrazyGames zip kabul etmez, dosyalar tek tek yüklenir; tanıtım videosu en çok 20 saniye.
+- **Çalışırken `AudioServer.set_bus_send()` çağırma.** Web export'ta bu çağrı tarayıcı mikserine iki
+  bus ters çevrilmiş olarak ulaşır: Master yeni bus'a göndermeye başlar, hoparlör bağlantısını
+  kaybeder ve oyun hiç ses çıkarmaz — üstelik hiçbir hata yazılmaz, bütün ölçüler (bus'lar kapalı
+  değil, `playing` doğru, örnek gerçekten çalıyor) normal görünür. Yeni bus zaten Master'a gönderir;
+  `add_bus()` + `set_bus_name()` yeter. `core/settings.gd` bu yüzden öyle. Teşhis: `index.html`'e
+  geçici bir prob koyup `AudioContext.destination` önüne bir `ScriptProcessorNode` sok ve tepe
+  değeri ölç — müzik çalarken sıfır kalıyorsa grafik kapanmıştır.
 - `Progress`'e kalıcı bir alan eklerken kaydı sürümle ve eski kaydı eksik alanı ekleyerek yükselt;
   hiçbir anahtar silinmez. Örnek: Hivebreaker `core/progress.gd` `upgrades()`/`migrate()`.
 
