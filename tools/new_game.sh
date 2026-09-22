@@ -9,9 +9,11 @@ set -euo pipefail
 SRC="$(cd "$(dirname "$0")/.." && pwd)"
 DEST="$(dirname "$SRC")/$1"
 [ ! -e "$DEST" ] || { echo "$DEST already exists"; exit 1; }
-PACKAGE="com.recepozen.$(echo "$1" | tr -d '-_' | tr '[:upper:]' '[:lower:]')"
+PACKAGE="com.recepozen.$(echo "$1" | tr -d '_-' | tr '[:upper:]' '[:lower:]')"
 
-rsync -a --exclude .git --exclude .godot --exclude build --exclude android "$SRC/" "$DEST/"
+# Leading slashes matter: an unanchored "android" would also drop addons/admob's own android
+# folders, and the new game would lose the ad plugin on the platform it ships to.
+rsync -a --exclude /.git --exclude /.godot --exclude /build --exclude /android "$SRC/" "$DEST/"
 sed -i '' "s|^config/name=.*|config/name=\"$2\"|" "$DEST/project.godot"
 sed -i '' "s|^package/unique_name=.*|package/unique_name=\"$PACKAGE\"|; \
 	s|^package/name=.*|package/name=\"$2\"|; \

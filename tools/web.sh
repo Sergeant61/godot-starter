@@ -7,7 +7,7 @@ GODOT="${GODOT:-/Applications/Godot.app/Contents/MacOS/Godot}"
 
 # Godot imports everything under res:// whatever .gitignore says; without this the web build's
 # icons get imported and packed into the next Android build.
-mkdir -p build && touch build/.gdignore
+mkdir -p build/web && touch build/.gdignore
 "$GODOT" --headless --import
 "$GODOT" --headless --export-release "Web" build/web/index.html
 echo "Serving http://localhost:8000"
